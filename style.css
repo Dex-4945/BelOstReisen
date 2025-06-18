@@ -1,0 +1,309 @@
+/* Using fonts that mimic handwriting and a clean sans-serif */
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+:root {
+    --color-black: #2c2c2c; /* (schwarz) */
+    --color-yellow: #ffc940; /* (gelb) */
+    --color-red: #e54b4b;     /* (rot) */
+    --color-background: #134397;
+    --font-handwritten: 'Kalam', cursive;
+    --font-body: 'Lato', sans-serif;
+    --header-height: 95px;
+}
+
+/* --- General Setup --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height); /* Offset for fixed header */
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: #FFFFFF;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* --- Header & Navigation --- */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    background-color: var(--color-background);
+    z-index: 1000;
+    transition: height 0.3s ease-in-out;
+}
+
+.logo-container {
+    padding-top: 15px;
+    height: 80px;
+    width: 80px; /* Logo is twice the width of menu item text space */
+    transition: all 0.3s ease-in-out;
+}
+
+.logo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: font-size 0.3s ease-in-out;
+}
+
+.Logo {
+    width: 100%;
+    height: auto;
+}
+
+nav {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-family: var(--font-handwritten);
+    font-size: 1.2rem;
+    padding: 10px 5px;
+    position: relative;
+    z-index: 2; /* Keep text above the indicator */
+}
+
+#menu-indicator {
+    position: absolute;
+    top: 50%; /* Position the center of the indicator at the vertical middle */
+    transform: translateY(-50%); /* Pull it up by half its own height to truly center it */
+    
+    /* State 1: Before scroll (tall, matching the logo) */
+    height: 100px; /* Same as .logo-container height */
+    z-index: 1;
+    border-radius: 5px;
+    /* The transition will now animate the height change smoothly */
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+
+
+/* --- Main Content & Sections --- */
+main {
+    margin-top: var(--header-height); /* Push content below header */
+}
+
+section {
+    padding-top: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-handwritten);
+    margin-bottom: 1rem;
+    color: var(--color-red);
+}
+
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
+.handwritten { font-family: var(--font-handwritten); }
+
+/* --- Section 1: Intro --- */
+#intro {
+    display: flex;
+    gap: 4rem;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* This is where you'd put the background image of Eupen */
+    /* background: url('path/to/eupen_image.jpg') no-repeat center center; */
+    /* background-size: cover; */
+}
+.intro-text {
+    flex: 2;
+    min-width: 300px;
+}
+.map-container {
+    flex: 1;
+    min-width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.map-placeholder {
+    aspect-ratio: 3 / 4;
+    border: 2px dashed var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-handwritten);
+    padding: 1rem;
+    text-align: center;
+    transform: rotate(3deg);
+}
+.elements {
+    color: var(--color-red);
+    font-family: var(--font-handwritten);
+    font-size: 1.5rem;
+    padding-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+}
+.ele1 {
+    transform: rotate(5deg);
+}
+.ele2 {
+    transform: rotate(-5deg);
+}
+.ostbekarte {
+  height: 100%;
+  width: auto;
+}
+
+/* --- Section 2: Wandern / People --- */
+.person-focus-layout {
+    margin-top: 2rem;
+}
+
+/* This new class makes the description and big image sit side-by-side. */
+.person-top-row {
+    display: flex;
+    gap: 0.5rem; /* Space between description and image */
+    align-items: flex-start; /* Aligns items to the top */
+    flex-wrap: wrap; /* Allows stacking on small screens */
+    min-width: 0;
+}
+
+/* This is the container for the <h3> and <p> description. */
+.person-details {
+    flex: 1; /* Takes up 50% of the space */
+    min-width: 300px;
+}
+
+/* The large image placeholder also takes up 50% of the space. */
+.person-focus-layout .image-placeholder.large {
+    flex: 1;
+    width: 100%;
+    max-width: 200px;  /* Optional limit for large screens */
+    min-width: 0;
+}
+
+/* The grid of small images now sits below and needs some top margin. */
+.surrounding-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+.Image1 {
+    margin-top: 3rem;
+    width:100%;
+    aspect-ratio: 1/1;
+    max-width: 300px;
+}
+.Image2 {
+    width:100%;
+    aspect-ratio: 1/1;
+    max-width: 200px;
+}
+.description {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+/* --- Section 3: Storytellers --- */
+.storyteller-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
+    gap: 2rem;
+}
+.storyteller-card .description {
+    text-align: center;
+    font-family: var(--font-handwritten);
+    font-size: 1.2rem;
+}
+
+/* --- Image Placeholders --- */
+.image-placeholder2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-handwritten);
+    color: #aaa;
+    border-radius: 4px;
+}
+.image-placeholder2.large { height: 400px; }
+.image-placeholder2.small { height: 120px; }
+.image-placeholder2 span {
+    transform: rotate(-5deg);
+}
+
+
+/* --- Footer --- */
+footer {
+    padding: 40px 5%;
+    text-align: center;
+}
+.instagram-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-handwritten);
+    font-size: 1.5rem;
+    color: var(--color-red);
+    text-decoration: none;
+}
+.instagram-icon {
+    width: 25px;
+    height: 25px;
+}
+.Image3{
+    width: 25px;
+    height: 25px;
+}
+
+@media (max-width: 693px) {
+    .Image1 {
+        margin-top: 1rem;
+        width:100%;
+        aspect-ratio: 1/1;
+        max-width: 300px;
+    }
+    .storyteller-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(25%, 1fr));
+        gap: 2rem;
+    }
+}
